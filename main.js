@@ -1,5 +1,13 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
+const express = require('express')
+
+const app = express()
+app.get('/', (req, res)=>{
+  res.sendStatus(200)
+})
+app.listen(process.env.PORT)
+
 client.on('ready', ()=>{
     client.user.setActivity("for updates!", {type:"WATCHING"})
     console.log('logged in to '+client.guilds.size+' servers')
@@ -7,12 +15,12 @@ client.on('ready', ()=>{
 client.on('message', message=>{
     if(message.author.bot) return
     let content = message.content
-    if(!content.startsWith('!')) return
+    if(!content.toLowerCase().startsWith('b ')) return
     content = content.substring(1)
     args = content.split(/ +/)
     command = args.shift()
     switch(command.toLowerCase()){
-        case "birthday":
+        case "day":
             if(args.length != 2) return message.reply('Please give me a single user to ping and mention a channel.')
             user = message.mentions.members.first()
             if(!user) user = message.guild.members.find(val => val.id == args[0]||val.user.username == args[0] || val.nickname == args[0])

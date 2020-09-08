@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "discord.js": "^11.6.x",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "express": "^x.x.x"
   },
   "author": "",
   "license": "ISC"
